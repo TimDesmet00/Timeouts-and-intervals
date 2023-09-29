@@ -43,6 +43,7 @@ const updateTimePassed = () => {
 setInterval(updateTimePassed, 1000);
 
 // exercice 3
+
 const boardGame = document.querySelector(".board-game");
 const scoreElement = document.querySelector(".score");
 const gaps = document.querySelectorAll(".gap");
@@ -51,27 +52,37 @@ const startButton = document.querySelector(".button-start");
 let score = 0;
 let moleInterval;
 let isMoleClickable = false;
+let gameInProgress = false;
 
 const mole = () => {
+  if (score >= 10) {
+    scoreElement.textContent = "Gagné !";
+    clearInterval(moleInterval);
+    return;
+  } else if (score <= -10) {
+    scoreElement.textContent = "Perdu !";
+    clearInterval(moleInterval);
+    return;
+  }
   gaps.forEach((gap) => gap.classList.remove("mole"));
 
-  // Choisissez un espace au hasard
+  // Choisissez un trou au hasard
   const randomIndex = Math.floor(Math.random() * gaps.length);
   const randomGap = gaps[randomIndex];
 
-  // Ajoutez la classe "mole" à l'espace choisi pour afficher la mole
+  // Ajoutez la classe mole
   randomGap.classList.add("mole");
   isMoleClickable = true;
 
   moleTimeout = setTimeout(() => {
     if (isMoleClickable) {
-      // Réduisez le score uniquement si la "mole" n'a pas été cliquée
+      // Réduisez le score uniquement si la mole n'a pas été cliquée
       score--;
       scoreElement.textContent = `Score: ${score}`;
     }
     randomGap.classList.remove("mole");
     mole();
-  }, 3000);
+  }, 1000);
 };
 
 const moleClick = (e) => {
@@ -92,6 +103,14 @@ gaps.forEach((gap) => {
 });
 
 startButton.addEventListener("click", () => {
-  mole();
-  startButton.disabled = true;
+  if (gameInProgress) {
+    score = 0;
+    scoreElement.textContent = " Score: 0";
+    gaps.forEach((gap) => gap.classList.remove("mole"));
+    mole();
+  } else {
+    gameInProgress = true;
+    gaps.forEach((gap) => gap.classList.remove("mole"));
+    mole();
+  }
 });

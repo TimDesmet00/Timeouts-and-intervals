@@ -61,6 +61,7 @@ body main .first-game .score {
   font-size: xx-large;
   background-color: #C34F5A;
   color: #541412;
+  padding-top: 1em;
 }
 body main .first-game .score:hover {
   box-shadow: 3px 3px 3px black;

@@ -63,6 +63,7 @@ body{
                 font-size: xx-large;
                 background-color: $background-gap-color;
                 color: $background-game-color;
+                padding-top: 1em;
                 &:hover{
                     @include hover-box;
                 }
