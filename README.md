@@ -1,11 +1,11 @@
 # Timeouts-and-intervals
 
-exercices lors de la formation Becode sur les interval et timeout
+Exercices réalisés lors de la formation BeCode sur les intervalles et les délais (timeout), visant à nous permettre de comprendre le concept d'asynchronie en JavaScript.
 
-**author**
+## Authors
 
-Desmet Tim
+- [Tim Desmet](https://github.com/TimDesmet00)
 
-**language**
+## Tech Stack
 
 HTML, SASS, Javascript
